@@ -7,7 +7,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
+    [Authorize (Roles= "canEdit")]
     
     public class adminController : Controller
     {
