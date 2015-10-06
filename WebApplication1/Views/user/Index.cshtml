@@ -1,12 +1,15 @@
-﻿
+﻿@model List<WebApplication1.Models.ApplicationUser>
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";    
 }
 
 <h2>Index</h2>
 
-@foreach (var t in ViewBag.usr) { 
-
-@t.UserName<br>
+@foreach (var t in Model) {
+    if (t.UserName != User.Identity.Name) { 
+    @t.UserName <br>}
 }
-
+<p>
+    name= @ViewBag.name
+</p>

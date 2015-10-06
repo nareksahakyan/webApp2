@@ -11,17 +11,24 @@ namespace WebApplication1.Controllers
     
     public class adminController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /admin/
         public ActionResult Index()
         {
-            var db = new ApplicationDbContext();
+            //var users = db.Users.ToList();
 
-            var users = db.Users.ToList();
-
-            ViewBag.usr = users;
-
-            return View();
+            var users = from db1 in db.Users where (db1.UserName != User.Identity.Name) select db1 ; 
+            
+            return View(users.ToList());
         }
+
+        public ActionResult Delete(string id)
+        {
+            var user = db.Users.Find(id);
+
+            return View(user);
+          }
+
 	}
 }

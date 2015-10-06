@@ -1,11 +1,11 @@
-﻿@{
+﻿@model List<WebApplication1.Models.ApplicationUser>
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-@foreach (var t in ViewBag.usr)
+@foreach (var t in Model)
 {
-
-    @t.UserName<br>
+    @t.UserName  @Html.ActionLink("Delete", "delete", new { id = t.Id.ToString() })<br>
 }

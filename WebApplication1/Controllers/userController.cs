@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -10,17 +11,17 @@ namespace WebApplication1.Controllers
     [Authorize]
     public class userController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /user/
         public ActionResult Index()
-        {
-            var db = new ApplicationDbContext();
+        {            
+            //var users = db.Users.ToList();
+            //ViewBag.usr = users;
 
-            var users = db.Users.ToList();
+            ViewBag.name = User.Identity.Name.ToString();
 
-            ViewBag.usr = users;
-
-            return View();
+            return View(db.Users.ToList());
         }
 	}
 }
